@@ -1,4 +1,3 @@
-import { ReactNode } from 'react';
 import { createPortal } from 'react-dom';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
@@ -36,35 +35,33 @@ const StyledNavigation = styled.nav`
   }
 `;
 
-type Props = {
-  children?: ReactNode;
-};
-
-const BottomNav = ({ children }: Props) => {
+const BottomNav = () => {
+    const data = [
+        {
+            to: '/',
+            label: '컴포넌트'
+        },
+        {
+            to: '/',
+            label: '홈'
+        },
+        {
+            to: '/',
+            label: '설정'
+        },
+    ]
   return (
     <>
       {createPortal(
         <StyledNavigation className="navigation grid-cols-3">
-          <Link
-            to="/"
-            className={`navi-icon`}
-          >
-            <div>컴포넌트</div>
-          </Link>
-          {children || (
+          {data.map((e) => (
             <Link
-              className={`navi-icon`}
-              to="/"
+                to={e.to}
+                className="navi-icon"
             >
-              <div>홈</div>
+                <div>{e.label}</div>
             </Link>
-          )}
-          <Link
-            to="/"
-            className={`navi-icon`}
-          >
-            <div>설정</div>
-          </Link>
+          ))}
         </StyledNavigation>,
         document.body,
       )}
