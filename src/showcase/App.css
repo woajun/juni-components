@@ -3,15 +3,18 @@
 @tailwind utilities;
 
 body {
-    margin: 0;
-    position: fixed;
-    width: 100%;
+    font-family: 'SCoreDream';
+    overflow: hidden !important;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    height: 100vh;
 }
 
 #root {
-    width: 100%;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    height: calc(100% - 56px);
 }
 
 ul,
@@ -20,11 +23,4 @@ ol {
     margin: 0;
     padding: 0;
     list-style: none;
-}
-
-
-.container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
 }

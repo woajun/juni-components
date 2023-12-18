@@ -2,7 +2,7 @@ import CardBundle from "../../components/CardBundle/CardBundle";
 
 function CardBundlePage() {
   return (
-    <div className="container">
+    <div className="flex items-center flex-col gap-10 pt-10">
       <CardBundle
         height={60}
         width={200}
