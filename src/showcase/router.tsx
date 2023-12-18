@@ -1,7 +1,7 @@
 import { createBrowserRouter } from "react-router-dom";
 import CardBundlePage from "./pages/CardBundlePage";
 import Layout from "./Layout";
-import PickerPage from "./pages/PickerPage";
+import PickerPage from "./pages/PickerPage/PickerPage";
 
 const router = createBrowserRouter([
     {
