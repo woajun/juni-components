@@ -1,5 +1,5 @@
 import { createPortal } from 'react-dom';
-import { Link } from 'react-router-dom';
+import { redirect } from 'react-router-dom';
 import styled from 'styled-components';
 
 const StyledNavigation = styled.nav`
@@ -35,32 +35,44 @@ const StyledNavigation = styled.nav`
   }
 `;
 
-const BottomNav = () => {
-    const data = [
-        {
-            to: '/',
-            label: '컴포넌트'
-        },
-        {
-            to: '/',
-            label: '홈'
-        },
-        {
-            to: '/',
-            label: '설정'
-        },
-    ]
+type NavItemTo = {
+  to: string
+  label: string
+}
+
+type NavItemClick = {
+  label: string
+  onClick: () => void
+}
+
+type NavItem = NavItemTo | NavItemClick
+
+type Props = {
+  navItems: NavItem[]
+}
+
+const BottomNav = ({ navItems }: Props) => {
+  const isNavItemTo = (item: NavItem): item is NavItemTo => {
+    return (item as NavItemTo).to !== undefined;
+  };
+  
   return (
     <>
       {createPortal(
         <StyledNavigation className="navigation grid-cols-3">
-          {data.map((e) => (
-            <Link
-                to={e.to}
+          {navItems.map((e) => (
+            <div
+                onClick={() => {
+                  if (isNavItemTo(e)) {
+                    redirect(e.to);
+                  } else {
+                    e.onClick();
+                  }
+                }}
                 className="navi-icon"
             >
                 <div>{e.label}</div>
-            </Link>
+            </div>
           ))}
         </StyledNavigation>,
         document.body,
