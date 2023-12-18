@@ -8,7 +8,7 @@ type CardProps = {
   onClick?: (color: string) => void;
 };
 
-function Card({ color, unmount, autoplayMs = 3000, onClick }: CardProps) {
+function Card({ color, unmount, autoplayMs, onClick }: CardProps) {
   const [position, setPosition] = useState({ x: 0, opacity: 1 });
   const cardRef = useRef<HTMLDivElement | null>(null);
   const startOffset = useRef(0);
@@ -18,6 +18,7 @@ function Card({ color, unmount, autoplayMs = 3000, onClick }: CardProps) {
   const autoplayIntervalId = useRef(-1);
 
   const startAutoplay = () => {
+    if (!autoplayMs) return;
     autoplayIntervalId.current = setInterval(() => {
       swipeRight();
     }, autoplayMs);
@@ -178,8 +179,6 @@ function Card({ color, unmount, autoplayMs = 3000, onClick }: CardProps) {
       className="card"
       style={{
         backgroundColor: color,
-        cursor: "grab",
-        userSelect: "none",
         opacity: position.opacity,
         transform: `translateX(${position.x}px)`,
         transition,
