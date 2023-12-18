@@ -1,6 +1,6 @@
 import { ReactNode } from 'react';
 import Dim from '../Dim';
-import IcoDrawerClose from '@/assets/img/ico-drawer-close.svg';
+import { StyledBottomDrawer } from './style';
 
 type Props = {
   show: boolean;
@@ -11,7 +11,7 @@ type Props = {
 const BottomDrawer = ({ show, onCloseClick, children }: Props) => (
   <>
     <Dim show={show} />
-    <div
+    <StyledBottomDrawer
       className={`fixed bottom-0 left-0 right-0 z-[60] w-full overflow-y-auto transition-transform ${
         show ? 'transform-none' : 'translate-y-full'
       }`}
@@ -19,15 +19,17 @@ const BottomDrawer = ({ show, onCloseClick, children }: Props) => (
     >
       <button
         type="button"
-        className="absolute top-[5px] end-[16px]"
+        className="absolute top-[5px] end-[13px]"
         onClick={onCloseClick}
       >
-        <img src={IcoDrawerClose} alt="" />
+        <div className='bg-white rounded-full h-7 w-7 flex items-center justify-center'>
+          X
+        </div>
       </button>
       <div className="drawer-content">
         {children}
       </div>
-    </div>
+    </StyledBottomDrawer>
   </>
 );
 

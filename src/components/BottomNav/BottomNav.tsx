@@ -62,6 +62,7 @@ const BottomNav = ({ navItems }: Props) => {
         <StyledNavigation className="navigation grid-cols-3">
           {navItems.map((e) => (
             <div
+                key={e.label}
                 onClick={() => {
                   if (isNavItemTo(e)) {
                     redirect(e.to);

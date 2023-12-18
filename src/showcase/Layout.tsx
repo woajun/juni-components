@@ -1,11 +1,17 @@
 import { Outlet } from "react-router-dom"
 import BottomNav from "../components/BottomNav"
+import { useState } from "react";
+import BottomDrawer from "../components/BottomDrawer";
 
 function Layout() {
+    const [isShowComponents, setIsShowComponents] = useState(false);
+
     const navItems = [
         {
-            to: '/',
-            label: '컴포넌트'
+            label: '컴포넌트',
+            onClick: () => {
+                setIsShowComponents(true);
+            }
         },
         {
             to: '/',
@@ -20,6 +26,9 @@ function Layout() {
         <>
             <Outlet />
             <BottomNav navItems={navItems}/>
+            <BottomDrawer show={isShowComponents} onCloseClick={() => setIsShowComponents(false)}>
+                aa
+            </BottomDrawer>
         </>
     )
 }
