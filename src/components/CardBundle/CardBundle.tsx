@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import { useState } from "react";
 import Card from "./Card";
 import { StyledCardBundle } from "./style";
@@ -8,12 +7,12 @@ type Props = {
   colors: string[];
   height: number;
   width: number;
-           onClick?: (color: string) => void;
+  onClick?: (color: string) => void;
 };
 function CardBundle({ autoplayMs, colors, height, width, onClick }: Props) {
   const [idx, setIdx] = useState(0);
 
-  const nextIdx = (idx + 1) % colors.length;      
+  const nextIdx = (idx + 1) % colors.length;
   const currentColor = colors[idx];
   const nextColor = colors[nextIdx];
 
