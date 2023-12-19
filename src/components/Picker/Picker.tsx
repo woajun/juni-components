@@ -1,44 +1,34 @@
 // copy from: https://github.com/adcentury/react-mobile-picker
-import {
-  CSSProperties,
-  HTMLProps,
-  MutableRefObject,
-  createContext,
-  useCallback,
-  useContext,
-  useMemo,
-  useReducer,
-} from 'react';
+import { CSSProperties, HTMLProps, MutableRefObject, createContext, useCallback, useContext, useMemo, useReducer } from 'react';
 
-const DEFAULT_HEIGHT = 187;
-const DEFAULT_ITEM_HEIGHT = 53;
+const DEFAULT_HEIGHT = 216;
+const DEFAULT_ITEM_HEIGHT = 36;
 const DEFAULT_WHEEL_MODE = 'off';
 
 interface Option {
-  value: string;
-  element: MutableRefObject<HTMLElement | null>;
+  value: string
+  element: MutableRefObject<HTMLElement | null>
 }
 
 export interface PickerValue {
-  [key: string]: string;
+  [key: string]: string
 }
 
-export interface PickerRootProps<TType extends PickerValue>
-  extends Omit<HTMLProps<HTMLDivElement>, 'value' | 'onChange'> {
-  value: TType;
-  onChange: (value: TType, key: string) => void;
-  height?: number;
-  itemHeight?: number;
-  wheelMode?: 'off' | 'natural' | 'normal';
-  unit?: string;
+export interface PickerRootProps<TType extends PickerValue> extends Omit<HTMLProps<HTMLDivElement>, 'value' | 'onChange'> {
+  value: TType
+  onChange: (value: TType, key: string) => void
+  height?: number
+  itemHeight?: number
+  wheelMode?: 'off' | 'natural' | 'normal'
+  unit?: string
 }
 
 const PickerDataContext = createContext<{
-  height: number;
-  itemHeight: number;
-  wheelMode: 'off' | 'natural' | 'normal';
-  value: PickerValue;
-  optionGroups: { [key: string]: Option[] };
+  height: number
+  itemHeight: number
+  wheelMode: 'off' | 'natural' | 'normal'
+  value: PickerValue
+  optionGroups: { [key: string]: Option[] }
 } | null>(null);
 PickerDataContext.displayName = 'PickerDataContext';
 
@@ -46,9 +36,7 @@ PickerDataContext.displayName = 'PickerDataContext';
 export const usePickerData = (componentName: string) => {
   const context = useContext(PickerDataContext);
   if (context === null) {
-    const error = new Error(
-      `<${componentName} /> is missing a parent <Picker /> component.`,
-    );
+    const error = new Error(`<${componentName} /> is missing a parent <Picker /> component.`);
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     if ((Error as any).captureStackTrace) {
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -60,8 +48,8 @@ export const usePickerData = (componentName: string) => {
 };
 
 const PickerActionsContext = createContext<{
-  registerOption(key: string, option: Option): () => void;
-  change(key: string, value: string): boolean;
+  registerOption(key: string, option: Option): () => void
+  change(key: string, value: string): boolean
 } | null>(null);
 PickerActionsContext.displayName = 'PickerActionsContext';
 
@@ -69,9 +57,7 @@ PickerActionsContext.displayName = 'PickerActionsContext';
 export const usePickerActions = (componentName: string) => {
   const context = useContext(PickerActionsContext);
   if (context === null) {
-    const error = new Error(
-      `<${componentName} /> is missing a parent <Picker /> component.`,
-    );
+    const error = new Error(`<${componentName} /> is missing a parent <Picker /> component.`);
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     if ((Error as any).captureStackTrace) {
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -104,19 +90,16 @@ const sortByDomNode = <T extends unknown>(
 const pickerReducer = (
   optionGroups: { [key: string]: Option[] },
   action: {
-    type: 'REGISTER_OPTION' | 'UNREGISTER_OPTION';
-    key: string;
-    option: Option;
+    type: 'REGISTER_OPTION' | 'UNREGISTER_OPTION'
+    key: string
+    option: Option
   },
 ) => {
   switch (action.type) {
     case 'REGISTER_OPTION': {
       const { key, option } = action;
       let nextOptionsForKey = [...(optionGroups[key] || []), option];
-      nextOptionsForKey = sortByDomNode(
-        nextOptionsForKey,
-        (o) => o.element.current,
-      );
+      nextOptionsForKey = sortByDomNode(nextOptionsForKey, (o) => o.element.current);
       return {
         ...optionGroups,
         [key]: nextOptionsForKey,
@@ -135,9 +118,7 @@ const pickerReducer = (
   }
 };
 
-const PickerRoot = <TType extends PickerValue>(
-  props: PickerRootProps<TType>,
-) => {
+const PickerRoot = <TType extends PickerValue>(props: PickerRootProps<TType>) => {
   const {
     style,
     children,
@@ -169,10 +150,8 @@ const PickerRoot = <TType extends PickerValue>(
       display: 'flex',
       justifyContent: 'center',
       overflow: 'hidden',
-      maskImage:
-        'linear-gradient(to top, transparent, transparent 5%, white 20%, white 80%, transparent 95%, transparent)',
-      WebkitMaskImage:
-        'linear-gradient(to top, transparent, transparent 5%, white 20%, white 80%, transparent 95%, transparent)',
+      maskImage: 'linear-gradient(to top, transparent, transparent 5%, white 20%, white 80%, transparent 95%, transparent)',
+      WebkitMaskImage: 'linear-gradient(to top, transparent, transparent 5%, white 20%, white 80%, transparent 95%, transparent)',
     }),
     [height],
   );
@@ -184,15 +163,12 @@ const PickerRoot = <TType extends PickerValue>(
     [height, itemHeight, value, optionGroups, wheelMode],
   );
 
-  const triggerChange = useCallback(
-    (key: string, nextValue: string) => {
-      if (value[key] === nextValue) return false;
-      const nextPickerValue = { ...value, [key]: nextValue };
-      onChange(nextPickerValue, key);
-      return true;
-    },
-    [onChange, value],
-  );
+  const triggerChange = useCallback((key: string, nextValue: string) => {
+    if (value[key] === nextValue) return false;
+    const nextPickerValue = { ...value, [key]: nextValue };
+    onChange(nextPickerValue, key);
+    return true;
+  }, [onChange, value]);
   const registerOption = useCallback((key: string, option: Option) => {
     dispatch({ type: 'REGISTER_OPTION', key, option });
     return () => dispatch({ type: 'UNREGISTER_OPTION', key, option });
@@ -215,7 +191,9 @@ const PickerRoot = <TType extends PickerValue>(
           {children}
         </PickerDataContext.Provider>
       </PickerActionsContext.Provider>
-      <div style={highlightStyle}>
+      <div
+        style={highlightStyle}
+      >
         <div
           style={{
             position: 'absolute',
@@ -243,20 +221,18 @@ const PickerRoot = <TType extends PickerValue>(
           }}
         />
         {unit && (
-          <div
-            style={{
-              width: '100%',
-              height: '100%',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'end',
-              paddingRight: '4px',
-              fontWeight: 'bold',
-              fontSize: '20px',
-            }}
-          >
-            {unit}
-          </div>
+        <div
+          style={{
+            width: '100%',
+            height: '100%',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'end',
+            paddingRight: '3px',
+          }}
+        >
+          {unit}
+        </div>
         )}
       </div>
     </div>

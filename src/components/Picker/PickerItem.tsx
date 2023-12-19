@@ -1,22 +1,14 @@
-import {
-  HTMLProps,
-  ReactNode,
-  useCallback,
-  useEffect,
-  useMemo,
-  useRef,
-} from 'react';
+import { HTMLProps, ReactNode, useCallback, useEffect, useMemo, useRef } from 'react';
 import { usePickerActions, usePickerData } from './Picker';
 import { useColumnData } from './PickerColumn';
 
 interface PickerItemRenderProps {
-  selected: boolean;
+  selected: boolean
 }
 
-export interface PickerItemProps
-  extends Omit<HTMLProps<HTMLDivElement>, 'value' | 'children'> {
-  children: ReactNode | ((renderProps: PickerItemRenderProps) => ReactNode);
-  value: string;
+export interface PickerItemProps extends Omit<HTMLProps<HTMLDivElement>, 'value' | 'children'> {
+  children: ReactNode | ((renderProps: PickerItemRenderProps) => ReactNode)
+  value: string
 }
 
 // eslint-disable-next-line
@@ -31,7 +23,7 @@ const PickerItem = ({
   ...restProps
 }: PickerItemProps) => {
   const optionRef = useRef<HTMLDivElement | null>(null);
-  const { itemHeight, value: pickerValue } = usePickerData('Picker');
+  const { itemHeight, value: pickerValue } = usePickerData('Picker.Item');
   const pickerActions = usePickerActions('Picker.Item');
   const { key } = useColumnData('Picker.Item');
 
@@ -46,7 +38,6 @@ const PickerItem = ({
       display: 'flex',
       justifyContent: 'center',
       alignItems: 'center',
-      fontSize: '20px',
     }),
     [itemHeight],
   );
@@ -65,9 +56,7 @@ const PickerItem = ({
       onClick={handleClick}
       {...restProps}
     >
-      {isFunction(children)
-        ? children({ selected: pickerValue[key] === value })
-        : children}
+      {isFunction(children) ? children({ selected: pickerValue[key] === value }) : children}
     </div>
   );
 };
