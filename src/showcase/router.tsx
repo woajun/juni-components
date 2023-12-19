@@ -30,6 +30,18 @@ const router = createBrowserRouter([
                 path:'chart',
                 element: <ChartPage />
             },
+            {
+                path:'tab',
+                element: <ChartPage />
+            },
+            {
+                path:'dim',
+                element: <ChartPage />
+            },
+            {
+                path:'bottom-drawer',
+                element: <ChartPage />
+            },
 
         ]
     },

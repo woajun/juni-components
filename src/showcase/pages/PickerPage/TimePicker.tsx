@@ -129,7 +129,7 @@ const TimePicker = ({ handleValueChange, value }: Props) => {
   };
 
   return (
-    <div className={`border-2 rounded-lg shadow-md mt-5 p-3 `} onClick={handleClick}>
+    <div className={`border-2 rounded-lg shadow-md mt-5 p-3 overflow-hidden`} onClick={handleClick}>
       <StyledAlarmPicker>
         <div className={`alarm-time-set `}>
           <div className="alarm-set-item">
