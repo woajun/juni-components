@@ -1,7 +1,8 @@
 import { createBrowserRouter } from "react-router-dom";
 import CardBundlePage from "./pages/CardBundlePage";
 import Layout from "./Layout";
-import PickerPage from "./pages/PickerPage/PickerPage";
+import PickerPage from "./pages/PickerPage";
+import ModalPage from "./pages/ModalPage";
 
 const router = createBrowserRouter([
     {
@@ -19,6 +20,10 @@ const router = createBrowserRouter([
             {
                 path:'picker',
                 element: <PickerPage />
+            },
+            {
+                path:'modal',
+                element: <ModalPage />
             },
 
         ]
