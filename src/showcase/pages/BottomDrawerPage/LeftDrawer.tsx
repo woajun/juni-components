@@ -1,8 +1,7 @@
 import { useState } from 'react';
-import BottomDrawer from '../../../components/BottomDrawer';
-import LeftDrawerComp from './LeftDrawer';
+import LeftDrawer from '../../../components/Drawer/LeftDrawer';
 
-const BottomDrawerPage = () => {
+const LeftDrawerComp = () => {
   const [isShow, setIsShow] = useState(false);
   return (
     <>
@@ -11,12 +10,11 @@ const BottomDrawerPage = () => {
           Show
         </button>
       </div>
-      <BottomDrawer show={isShow} onCloseClick={() => setIsShow(false)}>
+      <LeftDrawer show={isShow} onClose={() => setIsShow(false)}>
         aaaa
-      </BottomDrawer>
-      <LeftDrawerComp />
+      </LeftDrawer>
     </>
   );
 };
 
-export default BottomDrawerPage;
+export default LeftDrawerComp;
