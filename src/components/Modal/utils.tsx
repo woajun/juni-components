@@ -1,5 +1,8 @@
 import { createRoot, Root } from 'react-dom/client';
-import Modal from '.';
+import Modal from './Modal';
+import ModalBody from './ModalBody';
+import ModalFooter from './ModalFooter';
+import ModalHeader from './ModalHeader';
 
 type Props = {
   header: string,
@@ -14,9 +17,9 @@ export const programmaticModal = ({ header, body, footer, onClick }: Props) => {
   root = root ?? createRoot(domNode!);
   root.render(
     <Modal show>
-      <Modal.Header>{header}</Modal.Header>
-      <Modal.Body>{body}</Modal.Body>
-      <Modal.Footer>
+      <ModalHeader>{header}</ModalHeader>
+      <ModalBody>{body}</ModalBody>
+      <ModalFooter>
         <button
           type="button"
           onClick={() => {
@@ -31,7 +34,7 @@ export const programmaticModal = ({ header, body, footer, onClick }: Props) => {
         >
           {footer ?? '확인'}
         </button>
-      </Modal.Footer>
+      </ModalFooter>
     </Modal>,
   );
 };

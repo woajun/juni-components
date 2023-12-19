@@ -1,2 +1,3 @@
-import ChartPage from "./ChartPage";
+import ChartPage from './ChartPage';
+
 export default ChartPage;

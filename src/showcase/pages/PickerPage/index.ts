@@ -1,2 +1,3 @@
-import PickerPage from "./PickerPage";
+import PickerPage from './PickerPage';
+
 export default PickerPage;

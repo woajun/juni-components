@@ -1,6 +1,6 @@
-import { useState } from "react";
-import Card from "./Card";
-import { StyledCardBundle } from "./style";
+import { useState } from 'react';
+import Card from './Card';
+import { StyledCardBundle } from './style';
 
 type Props = {
   autoplayMs?: number;
@@ -9,7 +9,7 @@ type Props = {
   width: number;
   onClick?: (color: string) => void;
 };
-function CardBundle({ autoplayMs, colors, height, width, onClick }: Props) {
+const CardBundle = ({ autoplayMs, colors, height, width, onClick }: Props) => {
   const [idx, setIdx] = useState(0);
 
   const nextIdx = (idx + 1) % colors.length;
@@ -21,18 +21,18 @@ function CardBundle({ autoplayMs, colors, height, width, onClick }: Props) {
   };
   return (
     <StyledCardBundle className="card-bundle" style={{ height, width }}>
-        <Card
-          key={currentColor}
-          color={currentColor}
-          unmount={next}
-          autoplayMs={autoplayMs}
-          onClick={onClick}
-        />
-        <div className="card next" style={{ backgroundColor: nextColor }}>
-          {nextColor}
-        </div>
+      <Card
+        key={currentColor}
+        color={currentColor}
+        unmount={next}
+        autoplayMs={autoplayMs}
+        onClick={onClick}
+      />
+      <div className="card next" style={{ backgroundColor: nextColor }}>
+        {nextColor}
+      </div>
     </StyledCardBundle>
   );
-}
+};
 
 export default CardBundle;

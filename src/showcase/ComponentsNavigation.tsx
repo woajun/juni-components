@@ -1,6 +1,6 @@
 import ComponentsNavigationButton from './ComponentsNavigationButton';
 
-function ComponentsNavigation() {
+const ComponentsNavigation = () => {
   const data = [
     {
       label: 'bottom drawer',
@@ -42,6 +42,6 @@ function ComponentsNavigation() {
       ))}
     </div>
   );
-}
+};
 
 export default ComponentsNavigation;

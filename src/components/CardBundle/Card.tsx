@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect } from 'react';
 
 type CardProps = {
   color: string;
@@ -8,11 +8,17 @@ type CardProps = {
   onClick?: (color: string) => void;
 };
 
-function Card({ color, unmount, autoplayMs, onClick }: CardProps) {
+const Card = ({ color, unmount, autoplayMs, onClick }: CardProps) => {
   const [position, setPosition] = useState({ x: 0, opacity: 1 });
   const cardRef = useRef<HTMLDivElement | null>(null);
   const startOffset = useRef(0);
   const speed = 0.3;
+
+  const swipeRight = () => {
+    const w = cardRef.current?.offsetWidth as number;
+    setPosition({ opacity: 0, x: w });
+    setTimeout(unmount, speed * 1000);
+  };
 
   // autoplay
   const autoplayIntervalId = useRef(-1);
@@ -39,20 +45,20 @@ function Card({ color, unmount, autoplayMs, onClick }: CardProps) {
   const getFlipType = (
     x: number,
     second: number,
-    standardDistance: number
-  ): "leftFlip" | "rightFlip" | "noFlip" => {
+    standardDistance: number,
+  ): 'leftFlip' | 'rightFlip' | 'noFlip' => {
     const targetTime = new Date().getTime() - second * 1000;
     const before = timeXArray.current.find((e) => e.timestamp >= targetTime);
     timeXArray.current = [];
 
-    if (!before) return "noFlip";
+    if (!before) return 'noFlip';
     const distance = Math.abs(x - before.x);
 
     if (distance > standardDistance) {
-      return x - before.x < 0 ? "leftFlip" : "rightFlip";
+      return x - before.x < 0 ? 'leftFlip' : 'rightFlip';
     }
 
-    return "noFlip";
+    return 'noFlip';
   };
 
   // swipe
@@ -64,12 +70,6 @@ function Card({ color, unmount, autoplayMs, onClick }: CardProps) {
   const swipeLeft = () => {
     const w = cardRef.current?.offsetWidth as number;
     setPosition({ opacity: 0, x: -w });
-    setTimeout(unmount, speed * 1000);
-  };
-
-  const swipeRight = () => {
-    const w = cardRef.current?.offsetWidth as number;
-    setPosition({ opacity: 0, x: w });
     setTimeout(unmount, speed * 1000);
   };
 
@@ -97,17 +97,17 @@ function Card({ color, unmount, autoplayMs, onClick }: CardProps) {
     const flipType = getFlipType(clientX, 0.1, 20);
     const isOverHalf = Math.abs(position.x) > offsetWidth / 2;
 
-    if (flipType === "noFlip" && !isOverHalf) {
+    if (flipType === 'noFlip' && !isOverHalf) {
       swipeCancel();
       return;
     }
 
-    if (flipType === "leftFlip") {
+    if (flipType === 'leftFlip') {
       swipeLeft();
       return;
     }
 
-    if (flipType === "rightFlip") {
+    if (flipType === 'rightFlip') {
       swipeRight();
       return;
     }
@@ -157,22 +157,22 @@ function Card({ color, unmount, autoplayMs, onClick }: CardProps) {
 
   useEffect(() => {
     if (isPcDragging) {
-      window.addEventListener("mousemove", handleMouseMove);
-      window.addEventListener("mouseup", handleMouseUp);
+      window.addEventListener('mousemove', handleMouseMove);
+      window.addEventListener('mouseup', handleMouseUp);
 
       return () => {
-        window.removeEventListener("mousemove", handleMouseMove);
-        window.removeEventListener("mouseup", handleMouseUp);
+        window.removeEventListener('mousemove', handleMouseMove);
+        window.removeEventListener('mouseup', handleMouseUp);
       };
     }
+    return () => {};
   }, [isPcDragging]);
 
   const isUnmount = position.opacity === 0;
   const isCancel = position.x === 0;
-  const transition =
-    isUnmount || isCancel
-      ? `transform ${speed}s ease-out, opacity ${speed}s ease-out`
-      : "";
+  const transition = isUnmount || isCancel
+    ? `transform ${speed}s ease-out, opacity ${speed}s ease-out`
+    : '';
   return (
     <div
       ref={cardRef}
@@ -194,6 +194,6 @@ function Card({ color, unmount, autoplayMs, onClick }: CardProps) {
       {color}
     </div>
   );
-}
+};
 
 export default Card;

@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const StyledBottomDrawer = styled.div`
 .drawer-content {
@@ -24,4 +24,4 @@ export const StyledBottomDrawer = styled.div`
     }
   }
 }
-`
+`;

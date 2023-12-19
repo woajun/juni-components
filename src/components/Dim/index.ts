@@ -1,2 +1,3 @@
-import Dim from "./Dim";
+import Dim from './Dim';
+
 export default Dim;

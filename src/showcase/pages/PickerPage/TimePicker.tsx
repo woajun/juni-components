@@ -3,17 +3,17 @@ import styled from 'styled-components';
 import Picker from '../../../components/Picker';
 
 const generateNumbers = (min: number, max: number): string[] => {
-    const numbers: string[] = [];
-  
-    // 주어진 범위 내의 각 숫자를 형식에 맞게 배열에 추가
-    for (let i = min; i < max + 1; i++) {
-      const formattedNumber = i < 10 ? `0${i}` : `${i}`;
-      numbers.push(formattedNumber);
-    }
-  
-    return numbers;
-  };
-  
+  const numbers: string[] = [];
+
+  // 주어진 범위 내의 각 숫자를 형식에 맞게 배열에 추가
+  for (let i = min; i < max + 1; i++) {
+    const formattedNumber = i < 10 ? `0${i}` : `${i}`;
+    numbers.push(formattedNumber);
+  }
+
+  return numbers;
+};
+
 export const StyledAlarmPicker = styled.div`
   width: 100%;
   display: flex;
@@ -129,9 +129,9 @@ const TimePicker = ({ handleValueChange, value }: Props) => {
   };
 
   return (
-    <div className={`border-2 rounded-lg shadow-md mt-5 p-3 overflow-hidden`} onClick={handleClick}>
+    <div className="border-2 rounded-lg shadow-md mt-5 p-3 overflow-hidden" onClick={handleClick}>
       <StyledAlarmPicker>
-        <div className={`alarm-time-set `}>
+        <div className="alarm-time-set ">
           <div className="alarm-set-item">
             <Picker
               value={val}

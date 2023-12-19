@@ -1,9 +1,9 @@
-import NormalModal from "./NormalModal";
+import NormalModal from './NormalModal';
 
-function ModalPage() {
-    return (
-        <NormalModal />
-    )
-}
+const ModalPage = () => {
+  return (
+    <NormalModal />
+  );
+};
 
 export default ModalPage;

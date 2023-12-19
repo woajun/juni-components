@@ -11,7 +11,7 @@ module.exports = {
   parserOptions: {
     project: "./tsconfig.json"
   },
-  ignorePatterns: ['dist', '.eslintrc.cjs', 'postcss.config.js'],
+  ignorePatterns: ['dist', '.eslintrc.cjs', 'postcss.config.js', 'vite.config.ts'],
   parser: '@typescript-eslint/parser',
   plugins: ['react-refresh'],
   rules: {
@@ -31,9 +31,6 @@ module.exports = {
     "func-style": ["error", "expression"],
     "import/extensions": "off",
     "@typescript-eslint/no-unnecessary-type-constraint": ["off"],
-    "no-restricted-imports": ["error", {
-      "patterns": ["..*"]
-    }],
     "jsx-a11y/no-static-element-interactions": "off",
     "jsx-a11y/click-events-have-key-events": "off",
     "react/jsx-props-no-spreading": "off",

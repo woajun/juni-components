@@ -38,41 +38,41 @@ const StyledNavigation = styled.nav`
 type NavItemTo = {
   to: string
   label: string
-}
+};
 
 type NavItemClick = {
   label: string
   onClick: () => void
-}
+};
 
-type NavItem = NavItemTo | NavItemClick
+type NavItem = NavItemTo | NavItemClick;
 
 type Props = {
   navItems: NavItem[]
-}
+};
 
 const BottomNav = ({ navItems }: Props) => {
   const isNavItemTo = (item: NavItem): item is NavItemTo => {
     return (item as NavItemTo).to !== undefined;
   };
-  
+
   return (
     <>
       {createPortal(
         <StyledNavigation className="navigation grid-cols-3">
           {navItems.map((e) => (
             <div
-                key={e.label}
-                onClick={() => {
-                  if (isNavItemTo(e)) {
-                    redirect(e.to);
-                  } else {
-                    e.onClick();
-                  }
-                }}
-                className="navi-icon"
+              key={e.label}
+              onClick={() => {
+                if (isNavItemTo(e)) {
+                  redirect(e.to);
+                } else {
+                  e.onClick();
+                }
+              }}
+              className="navi-icon"
             >
-                <div>{e.label}</div>
+              <div>{e.label}</div>
             </div>
           ))}
         </StyledNavigation>,

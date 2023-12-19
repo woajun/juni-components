@@ -22,7 +22,7 @@ const BottomDrawer = ({ show, onCloseClick, children }: Props) => (
         className="absolute top-[5px] end-[13px]"
         onClick={onCloseClick}
       >
-        <div className='bg-white rounded-full h-7 w-7 flex items-center justify-center'>
+        <div className="bg-white rounded-full h-7 w-7 flex items-center justify-center">
           X
         </div>
       </button>

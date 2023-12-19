@@ -17,7 +17,7 @@ const NormalPicker = () => {
         {['158', '159', '160', '161', '162'].map((option) => (
           <Picker.Item key={option} value={option}>
             {({ selected }) => (
-              <div className={selected ? `font-semibold text-yellow-600` : 'text-neutral-400'}>{option}</div>
+              <div className={selected ? 'font-semibold text-yellow-600' : 'text-neutral-400'}>{option}</div>
             )}
           </Picker.Item>
         ))}

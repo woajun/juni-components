@@ -68,7 +68,6 @@ export const usePickerActions = (componentName: string) => {
   return context;
 };
 
-// eslint-disable-next-line @typescript-eslint/no-unnecessary-type-constraint
 const sortByDomNode = <T extends unknown>(
   nodes: T[],
   resolveKey: (item: T) => HTMLElement | null = (i) => i as unknown as HTMLElement | null,

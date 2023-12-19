@@ -49,38 +49,38 @@ const SummaryChart = ({
 
           // 기준값 윗 점선
           painter.dashLine({
-              distance: 2,
-              gap: 1,
-              color: standardBorderColor,
-              from: { x: left, y: endTop },
-              to: { x: left + width, y: endTop },
+            distance: 2,
+            gap: 1,
+            color: standardBorderColor,
+            from: { x: left, y: endTop },
+            to: { x: left + width, y: endTop },
           });
 
           // 기준값 윗 라벨
           painter.text({
-              color: '#029283',
-              size: '8px',
-              font: 'SCoreDream',
-              text: `${standardMax}${unit}`,
-              position: { x: right - 23, y: endTop - 5 },
+            color: '#029283',
+            size: '8px',
+            font: 'SCoreDream',
+            text: `${standardMax}${unit}`,
+            position: { x: right - 23, y: endTop - 5 },
           });
 
           // 기준값 아랫 점선
           painter.dashLine({
-              distance: 2,
-              gap: 1,
-              color: standardBorderColor,
-              from: { x: left, y: endMid },
-              to: { x: left + width, y: endMid },
+            distance: 2,
+            gap: 1,
+            color: standardBorderColor,
+            from: { x: left, y: endMid },
+            to: { x: left + width, y: endMid },
           });
 
           // 기준값 아랫 라벨
           painter.text({
-              color: '#029283',
-              size: '8px',
-              font: 'SCoreDream',
-              text: `${standardMin}${unit}`,
-              position: { x: right - 23, y: endMid + 15 },
+            color: '#029283',
+            size: '8px',
+            font: 'SCoreDream',
+            text: `${standardMin}${unit}`,
+            position: { x: right - 23, y: endMid + 15 },
           });
 
           chart.data.datasets.forEach((dataset) => {
@@ -132,8 +132,6 @@ const SummaryChart = ({
                 text: labelText,
                 position: labelPosition,
               });
-
-              
             });
           });
         },

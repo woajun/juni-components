@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const StyledCardBundle = styled.div`
 width: 100%;
@@ -21,4 +21,4 @@ position: relative;
     z-index: -1;
 }
 
-`
+`;
