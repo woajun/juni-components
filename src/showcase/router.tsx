@@ -3,6 +3,7 @@ import CardBundlePage from "./pages/CardBundlePage";
 import Layout from "./Layout";
 import PickerPage from "./pages/PickerPage";
 import ModalPage from "./pages/ModalPage";
+import ChartPage from "./pages/ChartPage";
 
 const router = createBrowserRouter([
     {
@@ -24,6 +25,10 @@ const router = createBrowserRouter([
             {
                 path:'modal',
                 element: <ModalPage />
+            },
+            {
+                path:'chart',
+                element: <ChartPage />
             },
 
         ]
