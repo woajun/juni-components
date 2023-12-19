@@ -27,10 +27,6 @@ const ComponentsNavigation = () => {
       to: '/card-bundle',
     },
     {
-      label: 'card-bundle',
-      to: '/card-bundle',
-    },
-    {
       label: 'tab',
       to: '/tab',
     },
@@ -38,7 +34,7 @@ const ComponentsNavigation = () => {
   return (
     <div className="grid grid-cols-3 text-center md:grid-cols-5 gap-2">
       {data.map((e) => (
-        <ComponentsNavigationButton data={e} />
+        <ComponentsNavigationButton data={e} key={e.to} />
       ))}
     </div>
   );

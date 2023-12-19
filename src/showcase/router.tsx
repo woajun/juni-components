@@ -4,6 +4,7 @@ import Layout from './Layout';
 import PickerPage from './pages/PickerPage';
 import ModalPage from './pages/ModalPage';
 import ChartPage from './pages/ChartPage';
+import TabPage from './pages/TabPage';
 
 const router = createBrowserRouter([
   {
@@ -32,7 +33,7 @@ const router = createBrowserRouter([
       },
       {
         path: 'tab',
-        element: <ChartPage />,
+        element: <TabPage />,
       },
       {
         path: 'dim',
