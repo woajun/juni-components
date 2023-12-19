@@ -1,7 +1,7 @@
 import { useState } from 'react';
-import Modal from '../../../components/Modal';
+import BottomDrawer from '../../../components/BottomDrawer';
 
-const NormalModal = () => {
+const BottomDrawerPage = () => {
   const [isShow, setIsShow] = useState(false);
   return (
     <>
@@ -10,20 +10,11 @@ const NormalModal = () => {
           Show
         </button>
       </div>
-      <Modal show={isShow}>
-        <Modal.Header>aa</Modal.Header>
-        <Modal.Body>bb</Modal.Body>
-        <Modal.Footer>
-          <button type="button" onClick={() => setIsShow(false)}>
-            취소
-          </button>
-          <button type="button" onClick={() => setIsShow(false)}>
-            확인
-          </button>
-        </Modal.Footer>
-      </Modal>
+      <BottomDrawer show={isShow} onCloseClick={() => setIsShow(false)}>
+        aaaa
+      </BottomDrawer>
     </>
   );
 };
 
-export default NormalModal;
+export default BottomDrawerPage;
