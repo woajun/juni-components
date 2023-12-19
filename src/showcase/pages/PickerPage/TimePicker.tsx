@@ -79,15 +79,14 @@ export const StyledAlarmPicker = styled.div`
   }
 `;
 
-const renderOptions = (options: string[], active: boolean) => options.map((option) => (
+const renderOptions = (options: string[]) => options.map((option) => (
   <Picker.Item key={option} value={option}>
     {({ selected }) => (
       <div
         className={
-            (selected
-              ? 'font-semibold text-[#029283] text-[30px]'
-              : 'text-[#cccccc], text-[20px]')
-              + (active ? '' : ' text-gray-300')
+            selected
+              ? 'font-semibold text-[#029283] text-[24px]'
+              : 'font-medium text-[#cccccc], text-[20px]'
           }
       >
         {option}
@@ -121,7 +120,7 @@ const TimePicker = ({ handleValueChange, value }: Props) => {
     handleValueChange(JSON.stringify(newValue));
   };
 
-  const [active, setActive] = useState(value !== '');
+  const [active, setActive] = useState(true);
   const handleClick = () => {
     if (!active) {
       setVal(val);
@@ -130,9 +129,9 @@ const TimePicker = ({ handleValueChange, value }: Props) => {
   };
 
   return (
-    <div className={`border-2 rounded-lg shadow-md mt-5 p-3 ${active ? '' : 'bg-gray-100 text-gray-400'}`} onClick={handleClick}>
+    <div className={`border-2 rounded-lg shadow-md mt-5 p-3 `} onClick={handleClick}>
       <StyledAlarmPicker>
-        <div className={`alarm-time-set ${active ? '' : 'pointer-events-none'}`}>
+        <div className={`alarm-time-set `}>
           <div className="alarm-set-item">
             <Picker
               value={val}
@@ -140,7 +139,7 @@ const TimePicker = ({ handleValueChange, value }: Props) => {
               wheelMode="natural"
             >
               <Picker.Column name="val1">
-                { renderOptions(parts, active)}
+                { renderOptions(parts)}
               </Picker.Column>
             </Picker>
           </div>
@@ -151,7 +150,7 @@ const TimePicker = ({ handleValueChange, value }: Props) => {
               wheelMode="natural"
             >
               <Picker.Column name="val2">
-                { renderOptions(hours, active)}
+                { renderOptions(hours)}
               </Picker.Column>
             </Picker>
           </div>
@@ -163,7 +162,7 @@ const TimePicker = ({ handleValueChange, value }: Props) => {
               wheelMode="natural"
             >
               <Picker.Column name="val3">
-                { renderOptions(minutes, active)}
+                { renderOptions(minutes)}
               </Picker.Column>
             </Picker>
           </div>
