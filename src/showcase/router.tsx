@@ -6,6 +6,7 @@ import ModalPage from './pages/ModalPage';
 import ChartPage from './pages/ChartPage';
 import TabPage from './pages/TabPage';
 import BottomDrawerPage from './pages/BottomDrawerPage';
+import DimPage from './pages/DimPage';
 
 const router = createBrowserRouter([
   {
@@ -38,7 +39,7 @@ const router = createBrowserRouter([
       },
       {
         path: 'dim',
-        element: <ChartPage />,
+        element: <DimPage />,
       },
       {
         path: 'bottom-drawer',
